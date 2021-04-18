@@ -1,7 +1,7 @@
 {
   "name": "hiperlynk-api",
   "version": "0.0.1",
-  "description": "",
+  "description": "A tiny api for my tiny hiperlynk website",
   "main": "index.js",
   "scripts": {
     "start": "nodemon dist/index.js",
