@@ -4,10 +4,10 @@
   "description": "A tiny api for my tiny hiperlynk website",
   "main": "index.js",
   "scripts": {
-    "start": "npx tsc --watch false && node dist/index.js",
-    "serve": "nodemon dist/index.js",
-    "build": "npx tsc",
-    "doc": "npx typedoc"
+    "doc": "npx typedoc",
+    "devBuild": "npx tsc",
+    "devServe": "nodemon dist/index.js",
+    "prod": "npx tsc --watch false && node dist/index.js"
   },
   "repository": {
     "type": "git",
