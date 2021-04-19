@@ -22,6 +22,15 @@ export const postLinkValidationRules = (): Array<ValidationChain> => {
         errorMessage: 'url cannot be empty',
       },
     },
+    username: {
+      in: ['body'],
+      notEmpty: {
+        options: {
+          ignore_whitespace: true,
+        },
+        errorMessage: 'username cannot be empty',
+      },
+    },
   });
 };
 

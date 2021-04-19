@@ -12,12 +12,12 @@ export interface IconObjectInterface {
   /**
    * The text to show when user hovers over the icon
    */
-  hover_text: string;
+  hover_text?: string;
 
   /**
    * The alt text for the icon
    */
-  alt_text: string;
+  alt_text?: string;
 }
 
 /**
@@ -38,6 +38,11 @@ export interface LinkSchemaInterface {
    * The icon for the link
    */
   icon: IconObjectInterface;
+
+  /**
+   * The username of the user who added the link
+   */
+  username: string;
 }
 
 export type LinkModelInterface = LinkSchemaInterface & Document;

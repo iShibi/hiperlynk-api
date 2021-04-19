@@ -17,6 +17,7 @@ linksRouter.post('/', postLinkValidationRules(), validate, (req: Request, res: R
     name: body.name,
     url: body.url,
     icon: body.icon,
+    username: body.username,
   });
   newLinkDoc
     .save()
@@ -95,6 +96,25 @@ linksRouter.delete('/delete/:id', (req, res) => {
     } else if (doc) {
       doc.delete();
       return res.status(200).json(doc);
+    } else {
+      return res.sendStatus(404);
+    }
+  });
+});
+
+/**
+ * Get all links added by a specific user
+ *
+ * GET /links/all/:username
+ */
+linksRouter.get('/all/:username', (req: Request, res: Response) => {
+  const username = req.params.username;
+  LinkModel.find({ username }, (err: Error, docs: Array<LinkModelInterface>) => {
+    if (err) {
+      console.log(err);
+      return res.json(err);
+    } else if (docs.length) {
+      return res.status(200).json(docs);
     } else {
       return res.sendStatus(404);
     }
