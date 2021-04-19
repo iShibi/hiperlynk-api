@@ -1,5 +1,7 @@
 import { Router } from 'express';
 import LinkModel from '../schemas/Link.js';
+import { postLinkValidationRules, getLinkByIdValidationRules, validate } from '../validators/links.js';
+import type { Request, Response } from 'express';
 import type { LinkSchemaInterface, LinkModelInterface } from '../interfaces/links';
 
 export const linksRouter = Router();
@@ -9,9 +11,8 @@ export const linksRouter = Router();
  *
  * POST /links
  */
-linksRouter.post('/', (req, res) => {
+linksRouter.post('/', postLinkValidationRules(), validate, (req: Request, res: Response) => {
   const body: LinkSchemaInterface = req.body;
-  if (!body) return res.json('Invalid');
   const newLinkDoc = new LinkModel({
     name: body.name,
     url: body.url,
@@ -46,9 +47,8 @@ linksRouter.get('/all', (req, res) => {
  *
  * GET /links/:id
  */
-linksRouter.get('/:id', (req, res) => {
+linksRouter.get('/:id', getLinkByIdValidationRules(), validate, (req: Request, res: Response) => {
   const id = req.params.id;
-  if (!id) return res.status(200).json('Invalid ID');
   LinkModel.findOne({ _id: id }, (err: Error, doc: LinkModelInterface) => {
     if (err) {
       console.log(err);
