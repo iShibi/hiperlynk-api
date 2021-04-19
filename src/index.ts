@@ -2,6 +2,7 @@ import express from 'express';
 import mongoose from 'mongoose';
 import { HYPR_ATLAS_URI } from './config.js';
 import { linksRouter } from './routes/links.js';
+import { accountsRouter } from './routes/accounts.js';
 import cors from 'cors';
 
 mongoose
@@ -23,4 +24,5 @@ app.get('/', (req, res) => {
   res.status(200).json('Working!');
 });
 
+app.use('/accounts', accountsRouter);
 app.use('/links', linksRouter);
